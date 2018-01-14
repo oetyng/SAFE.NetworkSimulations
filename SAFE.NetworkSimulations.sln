@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAFE.SimulatedNetwork", "SAFE.SimulatedNetwork\SAFE.SimulatedNetwork.csproj", "{F5822191-2283-45E3-A357-5AB63906B9DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAFE.NetworkSimulation", "SAFE.NetworkSimulation\SAFE.NetworkSimulation.csproj", "{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5822191-2283-45E3-A357-5AB63906B9DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5822191-2283-45E3-A357-5AB63906B9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5822191-2283-45E3-A357-5AB63906B9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5822191-2283-45E3-A357-5AB63906B9DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5FD0175-97D1-48DA-96D1-90769621D60A}
+	EndGlobalSection
+EndGlobal

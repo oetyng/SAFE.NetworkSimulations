@@ -53,8 +53,8 @@ namespace SAFE.NetworkSimulation
             {
                 Console.Write(msg);
 
-                if (int.TryParse(Console.ReadLine(), out int netSize) && condition(netSize))
-                    return netSize;
+                if (int.TryParse(Console.ReadLine(), out int value) && condition(value))
+                    return value;
             }
         }
     }

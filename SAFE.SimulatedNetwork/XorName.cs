@@ -11,31 +11,13 @@ namespace SAFE.SimulatedNetwork
 {
     public class XorName
     {
-        BitArray _bits;
-        public BitArray Bits
-        {
-            get
-            {
-                if (_bits == null)
-                {
-                    _bits = new BitArray(Address.BitCount);
-                    for (int i = 0; i < Address.BitCount; i++)
-                        _bits.Set(i, Address.TestBit(i));
-                    //_bits = new BitArray(Address.ToByteArray());
-                }
-                    
-                return _bits;
-            }
-        }
+        public BitArray Bits { get; private set; }
 
         public BigInteger Address { get; set; }
 
         public XorName(BitArray bits)
         {
-            //byte[] array = new byte[bits.Count];
-            //bits.CopyTo(array, 0);
-            //Address = new BigInteger(array);
-
+            Bits = bits;
             Address = new BigInteger("0");
             for (int i = 0; i < bits.Count; i++)
             {
@@ -78,6 +60,12 @@ namespace SAFE.SimulatedNetwork
         public XorName(string name)
         {
             Address = new BigInteger(SHA256(name));
+            Bits = new BitArray(Address.BitCount);
+            for (int i = 0; i < Address.BitCount; i++)
+            {
+                if (Address.TestBit(i))
+                    Bits.Set(i, true);
+            }
         }
 
         static Random _rand = Constants.prng;

@@ -26,7 +26,6 @@ namespace SAFE.SimulatedNetwork
         public bool HashModIsZero(BigInteger divisor)
         {
             var x = Hash.Mod(divisor);
-            //x.Mod(Hash, divisor)
             return x.CompareTo(new BigInteger("0")) == 0;
         }
     }

@@ -32,9 +32,14 @@ namespace SAFE.SimulatedNetwork
             return Age > 4;
         }
 
-        // NB: has temporary changes
+        // @mav:
+        // There should never be a prefix longer than the vault name length (vault name length is constant at 256 bits). 
+        // This would mean there’s approx 2^256 sections in the network which is pretty massive.
         public void RenameWithPrefix(Prefix p)
         {
+            if (p.Bits.Count > Name.Bits.Count)
+                Console.WriteLine("Warning: prefix bit count longer than name bit count!");
+
             var newBits = Name.Bits.Count >= p.Bits.Count ? 
                 new BitArray(Name.Bits) : new BitArray(p.Bits);
 
@@ -65,6 +70,8 @@ namespace SAFE.SimulatedNetwork
                 return 1;
             }
         }
+
+        // TODO: Confirm this one actually works as original version.
         static int ResolveAgeTiebreaker(Vault vi, Vault vj)
         {
             // ties in age are resolved by XOR their public keys together and find the

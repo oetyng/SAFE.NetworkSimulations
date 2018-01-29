@@ -101,8 +101,8 @@ namespace SAFE.SimulatedNetwork
                     left.Add(v);
                 else if (rightPrefix.Matches(v.Name))
                     right.Add(v);
-                else { }
-                    //Debug.WriteLine("Warning: Split has vault that doesn't match extended prefix");
+                else
+                    Debug.WriteLine("Warning: Split has vault that doesn't match extended prefix");
             }
             var ne0 = NewSection(leftPrefix, left);
             var ne1 = NewSection(rightPrefix, right);
@@ -215,7 +215,6 @@ namespace SAFE.SimulatedNetwork
                     // calculate divisor as 2^age
                     var divisor = new BigInteger("1");
                     divisor = divisor.ShiftLeft(w.Age);
-                    //divisor.Lsh(divisor, uint(w.Age));
     
                     if (ne.HashModIsZero(divisor))
                     {
@@ -231,7 +230,6 @@ namespace SAFE.SimulatedNetwork
                     // calculate divisor as 2^age
                     var divisor = new BigInteger("1");
                     divisor = divisor.ShiftLeft(w.Age);
-                    //divisor.Lsh(divisor, uint(w.Age))
     
                     if (ne.HashModIsZero(divisor))
                     {
@@ -241,7 +239,6 @@ namespace SAFE.SimulatedNetwork
                         // TODO this isn't done correctly, since it only XORs the two
                         // keys when it should XOR all keys of this age.
                         var xordistance = w.Name.Address.Xor(ne.Hash);
-                        //xordistance.Xor(w.Name.bigint, ne.hash)
 
                         if (xordistance.CompareTo(smallestTiebreaker) == -1)
                         {

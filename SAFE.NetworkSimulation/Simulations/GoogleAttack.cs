@@ -1,5 +1,6 @@
 using SAFE.SimulatedNetwork;
 using System;
+//using System.Linq;
 
 namespace SAFE.NetworkSimulation
 {
@@ -44,16 +45,18 @@ namespace SAFE.NetworkSimulation
                     attacker = new Vault { IsAttacker = true };
                     disallowed = network.AddVault(attacker);
                 }
-
+                
                 if (!network.Sections.ContainsKey(attacker.Prefix.Key))
                     continue;
 
                 attackVaultCount++;
 
+                //var attacked = network.Sections.Select(b => (decimal)attackVaultCount / b.Value.Vaults.Count).Max();
+
                 // check if attack has worked
                 var section = network.Sections[attacker.Prefix.Key];
 
-                if (section.IsAttacked() /* modification => */ && attacker.Prefix.Key != "")
+                if (section.IsAttacked())
                     break;
                 // TODO edge case: if section just split it may have
                 // caused the sibling section to be attacked so
@@ -73,9 +76,10 @@ namespace SAFE.NetworkSimulation
                 if (attackVaultCount % 10 == 0)
                 {
                     var e = network.GetRandomVault();
-                    while (e.IsAttacker /* modification => */ && e.Prefix.Key != "")
+                    
+                    while (e.IsAttacker)
                         e = network.GetRandomVault();
-
+                    
                     network.RemoveVault(e);
                 }
             }
@@ -89,6 +93,7 @@ namespace SAFE.NetworkSimulation
             ReportAttackerCount(network, attackVaultCount); // basic reporting
             ReportSectionSizeDistribution(network);
             ReportSectionAgeDistribution(network);
+            ReportPrefixLength(network);
             // addtitional specific reporting
             // ..
         }

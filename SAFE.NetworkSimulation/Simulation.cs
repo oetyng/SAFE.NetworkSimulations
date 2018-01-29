@@ -54,7 +54,7 @@ namespace SAFE.NetworkSimulation
                 }
             }
 
-            _log("   100%\n");
+            _log("\n100% complete\n");
 
             return network;
         }
@@ -72,12 +72,10 @@ namespace SAFE.NetworkSimulation
 
             _log($"{pctOwned} percent of total network owned by attacker");
 
-            var total = network.Sections.Values.SelectMany(s => s.Vaults).Count();
-            var attackers = network.Sections.Values.SelectMany(s => s.Vaults).Count(v => v.IsAttacker);
-
-            pctOwned = attackers / (double)total * 100.0;
-
-            _log($"{pctOwned} percent of total network owned by attacker");
+            //var total = network.Sections.Values.SelectMany(s => s.Vaults).Count();
+            //var attackers = network.Sections.Values.SelectMany(s => s.Vaults).Count(v => v.IsAttacker);
+            //pctOwned = attackers / (double)total * 100.0;
+            //_log($"{pctOwned} percent of total network owned by attacker");
         }
 
         protected void ReportSectionSizeDistribution(Network network)
@@ -125,6 +123,14 @@ namespace SAFE.NetworkSimulation
             _log("adults  sections");
             foreach (var adult in adults)
                 _log($"{adult.Key}  {adult.Value}");
+        }
+
+        protected void ReportPrefixLength(Network network)
+        {
+            var lengths = network.ReportPrefixsLengths();
+            _log("length  count");
+            foreach (var len in lengths)
+                _log($"{len.Key}  {len.Value}");
         }
     }
 }

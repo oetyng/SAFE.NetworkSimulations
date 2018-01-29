@@ -100,9 +100,9 @@ namespace SAFE.SimulatedNetwork
             {
                 TotalMerges++;
 
-                var parentPrefix = section.Prefix.Parent(); // contains temp modifications
+                var parentPrefix = section.Prefix.Parent();
                 // get sibling prefix
-                var siblingPrefix = v.Prefix.Sibling(); // contains temp modifications
+                var siblingPrefix = v.Prefix.Sibling();
                 // get sibling vaults
                 var parentVaults = section.Vaults.ToList();
 
@@ -132,9 +132,7 @@ namespace SAFE.SimulatedNetwork
                 Sections.Remove(section.Prefix.Key);
                 // create the new section
 
-                // TEMP TEMP TEMP
-                if (section.Prefix.Key != parentPrefix.Key) // TEMP TEMP TEMP
-                    ne = Section.NewSection(parentPrefix, parentVaults); // Original
+                ne = Section.NewSection(parentPrefix, parentVaults);
 
                 if (ne != null)
                 {
@@ -325,10 +323,25 @@ namespace SAFE.SimulatedNetwork
             }
 	        if (!Sections.ContainsKey(prefix.Key) && HasMoreThanOneVault())
             {
-                //Debug.WriteLine("Warning: No prefix for xorname");
+                Debug.WriteLine("Warning: No prefix for xorname");
                 return new Prefix();
 	        }
             return prefix;
+        }
+
+        public Dictionary<int, int> ReportPrefixsLengths()
+        {
+            var prefixLenghts = new Dictionary<int, int>();
+            foreach (var pair in Sections)
+            {
+                var key = pair.Key;
+                var prefix = pair.Value.Prefix;
+                if (!prefixLenghts.ContainsKey(prefix.Bits.Count))
+                    prefixLenghts[prefix.Bits.Count] = 0;
+                prefixLenghts[prefix.Bits.Count]++;
+            }
+
+            return prefixLenghts;
         }
 
         public List<KeyValuePair<int, int>> ReportAges()
@@ -358,8 +371,6 @@ namespace SAFE.SimulatedNetwork
                 var section = pair.Value;
                 var adults = section.TotalAdults();
                 // track distribution
-                //_, exists:= adultsCount[adults]
-
                 if (!adultsMap.ContainsKey(adults))
                     adultsMap[adults] = 0;
                 adultsMap[adults]++;

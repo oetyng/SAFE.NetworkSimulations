@@ -23,13 +23,11 @@ namespace SAFE.SimulatedNetwork
 
         public Prefix ExtendLeft()
         {
-            var newBits = new BitArray(Bits.Count + 1);// := make([]bool, Bits.Count+1)
+            var newBits = new BitArray(Bits.Count + 1);
 
             foreach (int i in Enumerable.Range(0, Bits.Count))
                 newBits[i] = Bits[i];
-
-            //newBits[newBits.Count - 1] = false;
-
+            
             var left = new Prefix
             {
                 Bits = newBits
@@ -42,7 +40,7 @@ namespace SAFE.SimulatedNetwork
 
         public Prefix ExtendRight()
         {
-            var newBits = new BitArray(Bits.Count + 1); //:= make([]bool, len(p.bits)+1)
+            var newBits = new BitArray(Bits.Count + 1);
 
             foreach (int i in Enumerable.Range(0, Bits.Count))
                 newBits[i] = Bits[i];
@@ -65,19 +63,20 @@ namespace SAFE.SimulatedNetwork
             {
                 Bits = Bits
             };
-
-            // TODO: Check if this is correct (temp solution to 0 count)
-            if (s.Bits.Count > 0)
+            
+            if (s.Bits.Count == 0)
+                Console.WriteLine("Warning: There should be no calling of Sibling on empty prefix!");
+            else
                 s.Bits[s.Bits.Count - 1] = !s.Bits[s.Bits.Count - 1];
+
             s.SetKey();
             return s;
         }
 
         internal Prefix Parent()
         {
-//            a:= Prefix{
-//                  bits: p.bits[:len(p.bits) - 1], 
-//  }
+            if (Bits.Count == 0)
+                Console.WriteLine("Warning: There should be no calling of Parent on empty prefix!");
 
             var newBits = new BitArray(Math.Max(0, Bits.Count - 1));
 
@@ -104,26 +103,6 @@ namespace SAFE.SimulatedNetwork
 
         void SetKey()
         {
-            //   var totalBytes = TotalBytes();
-            //   // preallocate bytes to avoid append
-            //   var bytes = new byte[totalBytes];// new BitArray(totalBytes);// make([]byte, totalBytes)
-            //for (int i = 0; i < totalBytes; i++)
-            //   {
-            //       byte thisByte = 0;
-            //       var startBit = i * 8;
-
-            //       var endBit = (i + 1) * 8;
-
-            //       for (int j = startBit; j < endBit; j++)
-            //       {
-            //           thisByte = (byte)(thisByte << 1);
-
-            //           if (j < Bits.Count && Bits[j])
-            //               thisByte++;
-            //       }
-            //       bytes[i] = thisByte;
-            //   }
-            //Key = BinaryString(new BitArray(bytes)); // strconv.Itoa(Bits.Count) + 
             Key = BinaryString(Bits);
         }
 

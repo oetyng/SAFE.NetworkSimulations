@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAFE.SimulatedNetwork", "SAFE.SimulatedNetwork\SAFE.SimulatedNetwork.csproj", "{F5822191-2283-45E3-A357-5AB63906B9DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAFE.NetworkSimulation", "SAFE.NetworkSimulation\SAFE.NetworkSimulation.csproj", "{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAFE.NetworkSimulation", "SAFE.NetworkSimulation\SAFE.NetworkSimulation.csproj", "{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mav", "Mav", "{255E7797-5E7C-40A7-8253-D6B25EC3D641}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5822191-2283-45E3-A357-5AB63906B9DD} = {255E7797-5E7C-40A7-8253-D6B25EC3D641}
+		{DD7039F1-9D6A-4A6D-BB6D-851FD7AFA98A} = {255E7797-5E7C-40A7-8253-D6B25EC3D641}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5FD0175-97D1-48DA-96D1-90769621D60A}
